@@ -1,0 +1,3 @@
+= Redmine Wikidump Plugin
+
+Provides a rake task to dump a given wiki either as HTML or PDF
