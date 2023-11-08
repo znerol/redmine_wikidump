@@ -10,20 +10,9 @@ namespace :wikidump do
       :project => project,
       :pages => pages,
     }
-    view = ActionView::Base.new(ActionController::Base.view_paths, assigns, ActionController::Base.new)
-
-    view.class_eval do
-      include Rails.application.routes.url_helpers
-      include ApplicationHelper
-      include WikiHelper
-
-      def url_options
-        {host: Setting.host_name.split('/')[0]}
-      end
-    end
 
     File.open(path, "wb") do |f|
-      f.write(view.render(:template => template))
+      f.write(WikiController.render template, assigns: assigns, layout: false)
     end
   end
 
